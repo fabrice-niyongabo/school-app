@@ -1,0 +1,41 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER} 
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    ports: 
+      - "3305:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend 
+    restart: always
+    ports:
+      - "5001:5001"
+    environment:
+      - DB_URL=${DB_URL}
+      - DB_USERNAME=${MYSQL_USER}
+      - DB_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      - mysql
+
+  frontend:
+    build: 
+      context: ./frontend
+      args:
+        # provide env variables to be used when building our frontend
+        - VITE_APP_BACKEND_URL=http://localhost:5001/api
+    restart: always
+    ports:
+      - "5002:5002"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
