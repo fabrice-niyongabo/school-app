@@ -14,7 +14,8 @@ services:
       - mysql_data:/var/lib/mysql
 
   backend:
-    build: ./backend 
+    # build: ./backend 
+    image: fabrice45/school-backend
     restart: always
     ports:
       - "5001:5001"
@@ -27,7 +28,8 @@ services:
 
   frontend:
     build: 
-      context: ./frontend
+      # context: ./frontend
+      image: fabrice45/school-frontend
       args:
         # provide env variables to be used when building our frontend
         - VITE_APP_BACKEND_URL=https://backend.cyizere.net/api
@@ -44,6 +46,17 @@ services:
       - /etc/letsencrypt:/etc/letsencrypt
       - /var/www/certbot:/var/www/certbot
     command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email ${CERTBOT_EMAIL} -d ${CERTBOT_DOMAIN1} -d ${CERTBOT_DOMAIN2} --agree-tos
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - DOCKER_HUB_USERNAME=${DOCKER_HUB_USERNAME}
+      - DOCKER_HUB_PASSWORD=${DOCKER_HUB_ACCESS_TOKEN}
+    command: --interval 300  # Checks for updates every 5 minutes
 
 volumes:
   mysql_data:
