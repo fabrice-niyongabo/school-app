@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  push_to_registry:
+    name: push docker image to hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: check repository
+        uses: actions/checkout@v4
+
+      - name: login to docker registry
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+
+      - name: build and push docker image to registry for fronted project
+        uses: docker/build-push-action@v5
+        with:
+          context: frontend/
+          push: true
+          tags: fabrice45/school-frontend:latest
+
+      - name: build and push docker image to registry for backend project
+        uses: docker/build-push-action@v5
+        with:
+          context: backend/
+          push: true
+          tags: fabrice45/school-backend:latest
+      
