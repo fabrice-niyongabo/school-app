@@ -1,7 +1,7 @@
 <template>
   <div class="container md:w-[80%] mx-auto pt-5 pb-10 rounded-md text-white">
     <form @submit.prevent="handleSubmit">
-      <h1>Register new student</h1>
+      <h1>Register new student - modified</h1>
       <div class="grid grid-cols-2 gap-5 mt-5">
         <input
           type="text"
