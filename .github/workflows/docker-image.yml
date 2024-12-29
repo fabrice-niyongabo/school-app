@@ -26,6 +26,8 @@ jobs:
           context: frontend/
           push: true
           tags: fabrice45/school-frontend:latest
+          build-args: |
+            VITE_APP_BACKEND_URL=https://backend.cyizere.net/api
 
       - name: build and push docker image to registry for backend project
         uses: docker/build-push-action@v5
