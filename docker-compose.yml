@@ -37,5 +37,15 @@ services:
     depends_on:
       - backend
 
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - /etc/letsencrypt:/etc/letsencrypt
+      - /var/www/certbot:/var/www/certbot
+    command: certonly --webroot -w /var/www/certbot --keep-until-expiring --email ${CERTBOT_EMAIL} -d ${CERTBOT_DOMAIN1} -d ${CERTBOT_DOMAIN2} --agree-tos
+
 volumes:
   mysql_data:
+  certbot-ssl:
+  certbot-challenge:
