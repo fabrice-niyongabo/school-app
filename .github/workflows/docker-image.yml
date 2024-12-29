@@ -8,19 +8,19 @@ on:
 
 jobs:
   push_to_registry:
-    name: push docker image to hub
+    name: Push Docker Image to Hub
     runs-on: ubuntu-latest
     steps:
-      - name: check repository
+      - name: Check repository
         uses: actions/checkout@v4
 
-      - name: login to docker registry
+      - name: Login to Docker registry
         uses: docker/login-action@v3
         with:
-          username: ${{secrets.DOCKERHUB_USERNAME}}
-          password: ${{secrets.DOCKERHUB_TOKEN}}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: build and push docker image to registry for fronted project
+      - name: Build and push Docker image for frontend project
         uses: docker/build-push-action@v5
         with:
           context: frontend/
@@ -29,10 +29,9 @@ jobs:
           build-args: |
             VITE_APP_BACKEND_URL=https://backend.cyizere.net/api
 
-      - name: build and push docker image to registry for backend project
+      - name: Build and push Docker image for backend project
         uses: docker/build-push-action@v5
         with:
           context: backend/
           push: true
           tags: fabrice45/school-backend:latest
-      
