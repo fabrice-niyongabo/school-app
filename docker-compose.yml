@@ -30,7 +30,7 @@ services:
       context: ./frontend
       args:
         # provide env variables to be used when building our frontend
-        - VITE_APP_BACKEND_URL=http://195.35.24.6:5001/api
+        - VITE_APP_BACKEND_URL=https://backend.cyizere.net/api
     restart: always
     ports:
       - "5002:5002"
