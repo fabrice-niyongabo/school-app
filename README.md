@@ -1,6 +1,6 @@
 # Watch the full video on YouTube
-<a href="https://www.youtube.com/watch?v=VIDEO_ID" target="_blank">
-  <img src="https://img.youtube.com/vi/VIDEO_ID/0.jpg" alt="Watch the video" width="600">
+<a href="https://www.youtube.com/watch?v=RgZFoC0QHbg" target="_blank">
+  <img src="https://img.youtube.com/vi/RgZFoC0QHbg/0.jpg" alt="Watch the video" width="600">
 </a>
 
 ## Getting started
@@ -57,6 +57,8 @@ server {
 ```
 NB: Replace both ``yourdomainname.com`` and ``yourApplicationPORT`` with your actual information
 
+
+
 2. NGINX configuration template file after installing an SSL certificate
 
 After installing an SSL certificate, you need to update the NGINX configuration file for your app with the following template:
@@ -95,7 +97,7 @@ server {
 
 NB: Replace both ``yourdomainname.com`` and ``yourApplicationPORT`` with your actual information
 
-# Conglaturations 🍻
+# Congratulations 🍻
 
 By following and implementing all the steps carefully, you should now be able to deploy your application on a VPS 🚀.
 If you face any issues, just let me know in the comment section.
