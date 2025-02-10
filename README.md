@@ -12,7 +12,7 @@ MYSQL_USER=
 MYSQL_PASSWORD=
 DB_URL=jdbc:mysql://yourMysqlServiceName:3306/yourDbName
 ```
-Then run the app by ``docker compose up``
+Then run the app by using: ``docker compose up``
 
 ## Video resources
 Below you can find all the basic commands and tools needed to deploy your full-stack application to a VPS
